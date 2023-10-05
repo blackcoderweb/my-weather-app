@@ -5,6 +5,7 @@ import { ForecastCard } from './ForecastCard';
 import { History } from './History';
 
 export const Navigation = () => {
+
   return (
     <Tabs
     variant='pills'
