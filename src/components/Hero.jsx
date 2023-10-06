@@ -1,28 +1,32 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
+import {LocationContext} from "../context";
+
 
 export const Hero = () => {
-  const [weatherMex, setWeatherMex] = useState();
+  
+  //Usando el contexto
+  const location = useContext(LocationContext);
+  const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const getWeatherMex = async () => {
-    try {
-      const res = await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=${
-          import.meta.env.VITE_API_KEY
-        }&q=Mexico&aqi=yes`
-      );
-      const data = await res.json();
-      setWeatherMex(data);
-      setLoading(false);
-    } catch (error) {
-      throw new Error("Error while fetching");
-    }
-  };
-
   useEffect(() => {
-    getWeatherMex();
-  }, []);
+    const getWeather = async () => {
+      try {
+        const res = await fetch(
+          `http://api.weatherapi.com/v1/current.json?key=${
+            import.meta.env.VITE_API_KEY
+          }&q=${location}&aqi=no`
+        );
+        const data = await res.json();
+        setWeather(data);
+        setLoading(false);
+      } catch (error) {
+        throw new Error("Error while fetching");
+      }
+    };
+    getWeather();
+  }, [location]);
 
   return (
     <Card className="mt-4" border="info">
@@ -31,12 +35,13 @@ export const Hero = () => {
       ) : (
         <>
           <Card.Header as="h3">
-            Weather in {weatherMex.location.name} today
+            Weather in {weather.location.name} today
           </Card.Header>
           <Card.Body>
-            <Card.Title>{weatherMex.current.condition.text} <img src={weatherMex.current.condition.icon} alt="Weather icon" /></Card.Title>
-            <Card.Text>Temperature: {weatherMex.current.temp_c} °C</Card.Text>
-            <Card.Text>Last updated: {weatherMex.current.last_updated}</Card.Text>
+            <Card.Title>{weather.current.condition.text} <img src={weather.current.condition.icon} alt="Weather icon" /></Card.Title>
+            <Card.Text>Temperature: {weather.current.temp_c} °C</Card.Text>
+            <Card.Text>Feels like: {weather.current.feelslike_c} °C</Card.Text>
+            <Card.Text>Last updated: {weather.current.last_updated}</Card.Text>
           </Card.Body>
         </>
       )}
