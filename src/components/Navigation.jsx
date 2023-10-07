@@ -22,8 +22,6 @@ export const Navigation = () => {
       <p>Next 3 days forecast</p>
       <Row xs={1} md={3} className="g-2 justify-content-center" >
       <ForecastCard />
-      <ForecastCard />
-      <ForecastCard />
       </Row>
       </Tab>
       <Tab eventKey="history" title="History">

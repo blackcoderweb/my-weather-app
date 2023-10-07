@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import {LocationContext} from "../context";
+import { getHour } from "../helpers/hourExtractor";
 
 
 export const Hero = () => {
@@ -41,7 +42,7 @@ export const Hero = () => {
             <Card.Title>{weather.current.condition.text} <img src={weather.current.condition.icon} alt="Weather icon" /></Card.Title>
             <Card.Text>Temperature: {weather.current.temp_c} °C</Card.Text>
             <Card.Text>Feels like: {weather.current.feelslike_c} °C</Card.Text>
-            <Card.Text>Last updated: {weather.current.last_updated}</Card.Text>
+            <Card.Text>Last updated: {getHour(weather.current.last_updated)}</Card.Text>
           </Card.Body>
         </>
       )}

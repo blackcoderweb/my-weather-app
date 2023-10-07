@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import Accordion from 'react-bootstrap/Accordion';
 import { LocationContext } from '../context';
+import { getHour } from '../helpers/hourExtractor';
 
 export const AllDay = () => {
 
@@ -11,7 +12,6 @@ export const AllDay = () => {
   const [weatherToday, setWeatherToday] = useState(null);
 
   const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
     const getWeatherToday = async () => {
@@ -46,7 +46,7 @@ export const AllDay = () => {
       <tbody>
         {weatherToday.hour.map((hour) => (
           <tr key={hour.time_epoch}>
-            <td className="vertical-center">{hour.time}</td>
+            <td className="vertical-center">{getHour(hour.time)}</td>
             <td className="vertical-center">{hour.temp_c} °C</td>
             <td className="vertical-center">{hour.condition.text}</td>
             <td className="vertical-center">
