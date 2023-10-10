@@ -50,6 +50,7 @@ export const ForecastCard = () => {
                   />
                 <Card.Text>Max: {forecast.day.maxtemp_c} °C</Card.Text>
                 <Card.Text>Min: {forecast.day.mintemp_c} °C</Card.Text>
+                <Card.Text>Avg. Temp: {forecast.day.avgtemp_c} °C</Card.Text>
               </Card.Body>
             </Card>
           ))}

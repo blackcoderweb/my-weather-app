@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 export const Search = () => {
   return (
     <>
-      <Navbar bg="light" data-bs-theme="light">
+      <Navbar bg="light" data-bs-theme="light" sticky="top">
         <Container className="justify-content-center">
         <Navbar.Brand href="#home">WeatherNow</Navbar.Brand>
             <Form className="d-flex">

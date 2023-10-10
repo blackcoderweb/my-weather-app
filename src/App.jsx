@@ -13,16 +13,14 @@ function App() {
   const [location, setLocation] = useState("Mexico");
 
   return (
-    <>
       <LocationContext.Provider value={location}>
         <Search />
-        <Container fluid style={{ maxWidth: "50rem" }} className="mb-4">
+        <Container fluid style={{ maxWidth: "50rem" }} className="container-main">
           <Hero />
           <Navigation />
         </Container>
         <Footer />
       </LocationContext.Provider>
-    </>
   );
 }
 

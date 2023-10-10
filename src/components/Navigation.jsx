@@ -27,12 +27,6 @@ export const Navigation = () => {
       <Tab eventKey="history" title="History">
       <p>Last 7 days</p>
       <History />
-      <History />
-      <History />
-      <History />
-      <History />
-      <History />
-      <History />
       </Tab>
     </Tabs>
   )

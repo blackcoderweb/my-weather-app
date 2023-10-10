@@ -36,8 +36,9 @@ export const AllDay = () => {
     {loading ? "Loading..." : (
       <>
       <p>All day</p>
-    <p>Max: {weatherToday.day.maxtemp_c}°C</p>
-    <p>Min: {weatherToday.day.mintemp_c}°C</p>
+    <p>Max: {weatherToday.day.maxtemp_c} °C</p>
+    <p>Min: {weatherToday.day.mintemp_c} °C</p>
+    <p>Avg. Temp: {weatherToday.day.avgtemp_c} °C</p>
     <Accordion>
       <Accordion.Item eventKey="0">
         <Accordion.Header>View details</Accordion.Header>

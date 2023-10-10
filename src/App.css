@@ -1,4 +1,7 @@
-
+.container-main{
+  min-height: 75vh;
+  margin-bottom: 25px;
+}
 
 .vertical-center {
     vertical-align: middle;
