@@ -16,6 +16,7 @@ export const Navigation = () => {
       justify
     >
     <Tab eventKey="today" title="Today">
+    <p>All day</p>
         <AllDay />
       </Tab>
       <Tab eventKey="forecast" title="Forecast">

@@ -1,13 +1,15 @@
 import { useContext, useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import Accordion from 'react-bootstrap/Accordion';
-import { LocationContext } from '../context';
+import { LocationContext } from '../context/location';
 import { getHour } from '../helpers/hourExtractor';
+import { StatusContext } from '../context/status';
 
 export const AllDay = () => {
 
   //Usando el contexto
-  const location = useContext(LocationContext);
+  const {location} = useContext(LocationContext);
+  const {status} = useContext(StatusContext);
   //Crear estado para guardar la info del tiempo en el día actual
   const [weatherToday, setWeatherToday] = useState(null);
 
@@ -32,10 +34,10 @@ export const AllDay = () => {
   }, [location]);
 
   return (
-    <>
+    status =="success" && (
+      <>
     {loading ? "Loading..." : (
       <>
-      <p>All day</p>
     <p>Max: {weatherToday.day.maxtemp_c} °C</p>
     <p>Min: {weatherToday.day.mintemp_c} °C</p>
     <p>Avg. Temp: {weatherToday.day.avgtemp_c} °C</p>
@@ -63,5 +65,6 @@ export const AllDay = () => {
       </>
     )}
   </>
+    )
   )
 }

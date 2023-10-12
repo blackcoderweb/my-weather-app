@@ -1,11 +1,13 @@
 import Accordion from "react-bootstrap/Accordion";
 import { useContext, useEffect, useState } from "react";
-import { LocationContext } from "../context";
+import { LocationContext } from "../context/location";
 import { decreaseDate } from "../helpers/dateExtractor";
+import { StatusContext } from "../context/status";
 
 export const History = () => {
   //Usando el contexto
-  const location = useContext(LocationContext);
+  const { location } = useContext(LocationContext);
+  const { status } = useContext(StatusContext);
 
   //Crear estado para guardar la info del tiempo en los 7 días anteriores a la fecha actual
   const [fullHistory, setFullHistory] = useState(null);
@@ -22,13 +24,12 @@ export const History = () => {
           tempFullHistory.push(history);
         }
         setLoading(false);
-        setFullHistory(tempFullHistory)
+        setFullHistory(tempFullHistory);
       } catch (error) {
         throw new Error("Error while fetching");
       }
     };
     getFullHistory();
-    
   }, []);
 
   //Con este método recupero el dato del estado del tiempo en un día
@@ -46,24 +47,31 @@ export const History = () => {
     }
   };
 
-
   return (
-    <>
-      {loading
-        ? "Loading..."
-        : fullHistory.map((history) => (
-            <Accordion key={history.date_epoch}>
-              <Accordion.Item eventKey="0">
-                <Accordion.Header>{history.date}</Accordion.Header>
-                <Accordion.Body>
-                  <p>{history.day.condition.text} <img src={history.day.condition.icon} alt={history.day.condition.text} /></p>
-                  <p>Max: {history.day.maxtemp_c} °C</p>
-                  <p>Min: {history.day.mintemp_c} °C</p>
-                  <p>Avg. Temp: {history.day.avgtemp_c} °C</p>
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
-          ))}
-    </>
+    status == "success" && (
+      <>
+        {loading
+          ? "Loading..."
+          : fullHistory.map((history) => (
+              <Accordion key={history.date_epoch}>
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>{history.date}</Accordion.Header>
+                  <Accordion.Body>
+                    <p>
+                      {history.day.condition.text}{" "}
+                      <img
+                        src={history.day.condition.icon}
+                        alt={history.day.condition.text}
+                      />
+                    </p>
+                    <p>Max: {history.day.maxtemp_c} °C</p>
+                    <p>Min: {history.day.mintemp_c} °C</p>
+                    <p>Avg. Temp: {history.day.avgtemp_c} °C</p>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            ))}
+      </>
+    )
   );
 };
