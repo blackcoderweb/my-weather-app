@@ -52,6 +52,9 @@ export const Hero = () => {
               {weather.current.condition.text}{" "}
               <img src={weather.current.condition.icon} alt="Weather icon" />
             </Card.Title>
+            <Card.Title className="mb-3">
+              Region: {weather.location.region}, {weather.location.country}
+            </Card.Title>
             <Card.Text>Temperature: {weather.current.temp_c} °C</Card.Text>
             <Card.Text>Feels like: {weather.current.feelslike_c} °C</Card.Text>
             <Card.Text>
