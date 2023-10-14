@@ -36,7 +36,7 @@ export const History = () => {
   const getHistoryDay = async (amount) => {
     try {
       const res = await fetch(
-        `http://api.weatherapi.com/v1/history.json?key=${
+        `https://api.weatherapi.com/v1/history.json?key=${
           import.meta.env.VITE_API_KEY
         }&q=${location}&dt=${decreaseDate(amount)}`
       );

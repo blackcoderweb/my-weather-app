@@ -17,7 +17,7 @@ export const Hero = () => {
     const getWeather = async () => {
       try {
         const res = await fetch(
-          `http://api.weatherapi.com/v1/current.json?key=${
+          `https://api.weatherapi.com/v1/current.json?key=${
             import.meta.env.VITE_API_KEY
           }&q=${location}&aqi=no`
         );

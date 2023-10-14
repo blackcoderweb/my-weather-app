@@ -17,7 +17,7 @@ export const ForecastCard = () => {
     const getForecast = async () => {
       try {
         const res = await fetch(
-          `http://api.weatherapi.com/v1/forecast.json?key=${
+          `https://api.weatherapi.com/v1/forecast.json?key=${
             import.meta.env.VITE_API_KEY
           }&q=${location}&days=3&aqi=no&alerts=no`
         );
